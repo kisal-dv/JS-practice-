@@ -1,44 +1,35 @@
-class Animal {
-    constructor(name) {
-      this.name = name;
-    }
-  
-    speak() {
-      console.log(`${this.name} makes a sound.`);
-    }
-  }
-  
-  const dog = new Animal("Dog");
-  dog.speak();     
-  
-
-// little call back example
-
-function greet(name, callback) {
-    console.log("hell0," + name);
-    callback();
+const students=[
+    {id: 1, name: "kisal", age: 22, scores:{ math:85, science:50}},
+    {id: 2, name: "sahan", age: 23, scores:{ math:75, science:40}},
+    {id: 3, name: "namal", age: 24, scores:{ math:56, science:30}}
     
-}
+];
 
-function saygoodbye() {
-    console.log("good bye !")
-    
-}
-greet("kisal",saygoodbye);
+console.log(students);
 
+const studentNames = students.map(student => student.name);
+console.log(studentNames);
 
-///
+const topMathStudents = students.filter(student => student.scores.math > 70);
+console.log(topMathStudents);
 
-function greeting1(name, callback) {
-    console.log("Hello," +name)
-    callback();
-    
-}
-function saygoodmorining() {
-    console.log("Good morining  !");
-    
-}
-greeting1("kisal 1 ",saygoodmorining);
+students.forEach(student =>{
+    console.log(`${student.name} is ${student.age} years old.`);
+});
 
+students.forEach(({name, scores:{math, science}}) =>{
+    console.log(`${name} - Math: ${math}, Science: ${science}`);
 
-////////////////////////
+});
+
+const newStudent ={id: 4, name: "ethana", age:21, scores: { math: 88, science:78}};
+const updatedStudents =[...students, newStudent];
+
+console.log(updatedStudents);
+
+const updatedStudentlist = students.map(student =>
+    student.id === 2? { ...student, scores: { ...student.scores, math: 95}} : student
+
+);
+
+console.log(updatedStudentlist);
